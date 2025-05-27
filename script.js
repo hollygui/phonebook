@@ -70,11 +70,19 @@ $(document).ready(function(){
 
   $(".digit").on("click", function () {
     var num = $(this).clone().children().remove().end().text();
-    if ($('#output').text().length < 5) {
-      $("#output").append("<span>" + num.trim() + "</span>");
+    var output = $('#output');
+    var current = output.text();
+    // Only allow input if length is less than 7 and result will be 4 or 7 digits max
+    if (current.length < 7) {
+      var next = current + num.trim();
+      // Only allow if next length is 4 or 7, or less than 4/7 (so user can build up to it)
+      if (next.length <= 4 || (current.length < 7 && next.length <= 7)) {
+        output.append("<span>" + num.trim() + "</span>");
+      }
     }
-    var dial = $('#output').text();
-    if (dial.length === 5) {
+    var dial = output.text();
+    // Only enable call if dial is 4 or 7 digits
+    if (dial.length === 4 || dial.length === 7) {
       $("#call").css("background-color", "#66bb6a").on("vmouseup", function () {
         $(this).css("background-color", "#66bb6a");
       })
@@ -88,6 +96,13 @@ $(document).ready(function(){
           $("#match").html(data[i].name);
         }
       }
+    } else {
+      // Disable call button if not 4 or 7 digits
+      var call = $("#call");
+      call.unbind()
+        .css("background-color", "#e6e6e6")
+        .attr("href", "#");
+      $("#match").html('');
     }
   });
 
@@ -98,18 +113,36 @@ $(document).ready(function(){
     if (count > 0) {
       $("#output span:last-child").remove();
     }
-    var call = $("#call");  
-    call.unbind()
-      .css("background-color", "#e6e6e6")
-      .attr("href", "#");
+    var dial = $('#output').text();
+    // Only enable call if dial is 4 or 7 digits
+    if (dial.length === 4 || dial.length === 7) {
+      $("#call").css("background-color", "#66bb6a")
+        .attr("href", "tel:" + makePhone(dial));
+    } else {
+      var call = $("#call");  
+      call.unbind()
+        .css("background-color", "#e6e6e6")
+        .attr("href", "#");
+    }
   });
+
+  addAnimation();
 });
 
 function makePhone(input){
- return (input.charAt(0) == "6" ? 
-        "+131292" : (input.charAt(0) == "2" ? 
-          "+131247" : "+131269")) + input;
+  if (input.length === 4) {
+    return "+1773257" + input;
+  } else if (input.length === 7) {
+    return "+1773" + input;
+  }
+  return input; // fallback, shouldn't happen
 }
+
+
+
+
+
+
 
 function addAnimation(){
   $(".digit, .dig, .contact").on("mousedown touchstart", function () {
