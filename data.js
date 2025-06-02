@@ -93,5 +93,9 @@ var data = [
   {name:"Facilities", number:"6401"},
   {name:"Central Receiving 1", number:"6752"},
   {name:"Central Receiving 2", number:"6753"},
-  {name:"Library", number:"3756"}
+  {name:"Library", number:"3756"},
+  {name:"Coroner", number:"312-666-0200"},
+  {name:"Gift of Hope", number:"800-545-4438"},
+  {name:"Cermak Urgent Care", number:"773-674-5628"},
+  {name:"Dr. Defuniak (Cermak)", number:"773-674-6612"}
 ];
