@@ -1,7 +1,7 @@
-$(document).on('dataReady', function() {
+$(document).ready(function(){  
   data.sort(function (a, b) {return (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1});
   const fuse = new Fuse(data, {keys:["name"]});
-
+   
   var header, currentList;
   var contactContainer = $("#contactcontainer");
   for (var i = 0; i < data.length; i++){
