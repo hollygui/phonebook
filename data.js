@@ -97,5 +97,6 @@ var data = [
   {name:"Coroner", number:"312-666-0200"},
   {name:"Gift of Hope", number:"800-545-4438"},
   {name:"Cermak Urgent Care", number:"773-674-5628"},
-  {name:"Dr. Defuniak (Cermak)", number:"773-674-6612"}
+  {name:"Dr. Defuniak (Cermak)", number:"773-674-6612"},
+  {name:"Interpreter", number:"855-469-5225"}
 ];
